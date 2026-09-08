@@ -1,0 +1,20 @@
+Message stats for scenario Kathmandu_HighLoad_SprayWait_Seed5
+sim_time: 43200.0000
+created: 959
+started: 4233
+relayed: 3759
+aborted: 473
+dropped: 2299
+removed: 0
+delivered: 921
+delivery_prob: 0.9604
+response_prob: 0.0000
+overhead_ratio: 3.0814
+latency_avg: 1782.7112
+latency_med: 1300.0000
+hopcount_avg: 2.1031
+hopcount_med: 2
+buffertime_avg: 16715.0844
+buffertime_med: 17776.0000
+rtt_avg: NaN
+rtt_med: NaN

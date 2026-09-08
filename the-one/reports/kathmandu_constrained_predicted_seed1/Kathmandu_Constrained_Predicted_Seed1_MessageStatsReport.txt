@@ -1,0 +1,20 @@
+Message stats for scenario Kathmandu_Constrained_Predicted_Seed1
+sim_time: 43200.0000
+created: 475
+started: 2115
+relayed: 1857
+aborted: 258
+dropped: 1107
+removed: 0
+delivered: 458
+delivery_prob: 0.9642
+response_prob: 0.0000
+overhead_ratio: 3.0546
+latency_avg: 1643.8603
+latency_med: 1191.0000
+hopcount_avg: 2.1528
+hopcount_med: 2
+buffertime_avg: 17780.2900
+buffertime_med: 17907.0000
+rtt_avg: NaN
+rtt_med: NaN

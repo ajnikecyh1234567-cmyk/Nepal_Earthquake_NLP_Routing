@@ -1,0 +1,9 @@
+Priority message statistics for scenario Kathmandu_Constrained_Oracle_Seed1
+sim_time: 43200.0000
+messages_without_priority: 0
+
+priority created delivered delivery_prob started relayed overhead_ratio aborted dropped removed latency_avg latency_med hopcount_avg hopcount_med
+P1 82 79 0.9634 376 322 3.0759 54 223 0 1626.7722 1125.0000 2.1392 2
+P2 43 42 0.9767 185 170 3.0476 15 88 0 1391.4762 1357.0000 2.0714 2
+P3 232 222 0.9569 1033 905 3.0766 128 507 0 1734.1216 1242.0000 2.1306 2
+P4 118 115 0.9746 524 460 3.0000 64 289 0 1581.1217 1150.0000 2.2435 2

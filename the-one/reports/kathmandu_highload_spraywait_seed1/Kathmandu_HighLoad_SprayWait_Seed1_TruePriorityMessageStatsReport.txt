@@ -1,0 +1,9 @@
+True-priority message statistics for scenario Kathmandu_HighLoad_SprayWait_Seed1
+sim_time: 43200.0000
+messages_without_true_priority: 0
+
+priority created delivered delivery_prob started relayed overhead_ratio aborted dropped removed latency_avg latency_med hopcount_avg hopcount_med
+P1 169 162 0.9586 740 663 3.0926 77 403 0 1796.8889 1181.5000 2.0309 2.0000
+P2 83 79 0.9518 356 321 3.0633 35 202 0 1901.7848 1326.0000 2.1646 2.0000
+P3 488 464 0.9508 2140 1905 3.1056 235 1166 0 1835.8082 1352.0000 2.1422 2.0000
+P4 219 213 0.9726 950 848 2.9812 102 545 0 1650.2770 1234.0000 2.0939 2.0000

@@ -1,0 +1,224 @@
+# ============================================================
+# Kathmandu Priority-Aware Buffer Management Test
+#
+# Purpose:
+# 1. Create P1-P4 messages rapidly at the same source node.
+# 2. Use a very small source buffer to force message deletion.
+# 3. Verify priority-aware eviction:
+#
+#       P4 removed first
+#       P3 removed second
+#       P2 removed third
+#       P1 removed last
+#
+# This is a controlled debugging test, not a final thesis run.
+# ============================================================
+
+
+# ============================================================
+# 1. Scenario settings
+# ============================================================
+
+Scenario.name = Kathmandu_Priority_Buffer_Test
+
+Scenario.simulateConnections = true
+Scenario.updateInterval = 1.0
+
+# Short controlled simulation
+Scenario.endTime = 300
+
+# Residents, rescue workers and rescue vehicles
+Scenario.nrofHostGroups = 3
+
+
+# ============================================================
+# 2. Movement model settings
+# ============================================================
+
+# Fixed seed for reproducibility
+MovementModel.rngSeed = 1
+
+# Kathmandu map dimensions in metres
+MovementModel.worldSize = 3268, 2482
+
+# Distribute nodes before simulation time zero
+MovementModel.warmup = 1000
+
+
+# ============================================================
+# 3. Communication interface
+# ============================================================
+
+btInterface.type = SimpleBroadcastInterface
+
+# Normal baseline transmission speed:
+# 250 kB/s is approximately 2 Mbit/s
+btInterface.transmitSpeed = 250k
+
+# Communication range in metres
+btInterface.transmitRange = 50
+
+
+# ============================================================
+# 4. Kathmandu map
+# ============================================================
+
+MapBasedMovement.nrofMapFiles = 1
+MapBasedMovement.mapFile1 = data/kathmandu_roads.wkt
+
+
+# ============================================================
+# 5. Common node settings
+# ============================================================
+
+Group.movementModel = ShortestPathMapBasedMovement
+
+# Priority-aware Spray-and-Wait V2:
+# - priority transmission scheduling
+# - priority-aware buffer eviction
+Group.router = PrioritySprayAndWaitRouter
+
+Group.nrofInterfaces = 1
+Group.interface1 = btInterface
+
+Group.waitTime = 0, 120
+
+# Message TTL is expressed in minutes
+Group.msgTtl = 300
+
+# All node groups use map file 1
+Group.okMaps = 1
+
+
+# ============================================================
+# 6. Spray-and-Wait settings
+#
+# PrioritySprayAndWaitRouter reads these parameters from the
+# original SprayAndWaitRouter namespace.
+# ============================================================
+
+SprayAndWaitRouter.nrofCopies = 4
+SprayAndWaitRouter.binaryMode = true
+
+
+# ============================================================
+# 7. Group 1: affected residents
+#
+# Addresses: 0-59
+# Only p0 generates messages in this controlled test.
+# ============================================================
+
+Group1.groupID = p
+Group1.nrofHosts = 60
+
+Group1.speed = 0.3, 1.2
+
+# Extremely small test buffer:
+# Five 100 kB messages can fit before eviction is required.
+#
+# This value is intentionally unrealistic and is used only to
+# verify the priority-aware deletion mechanism.
+Group1.bufferSize = 500k
+
+
+# ============================================================
+# 8. Group 2: rescue workers
+#
+# Addresses: 60-79
+# r60 is the destination of all generated messages.
+# ============================================================
+
+Group2.groupID = r
+Group2.nrofHosts = 20
+
+Group2.speed = 1.0, 2.5
+
+# Keep the normal rescue-worker buffer size
+Group2.bufferSize = 20M
+
+
+# ============================================================
+# 9. Group 3: rescue vehicles / data mules
+#
+# Addresses: 80-94
+# ============================================================
+
+Group3.groupID = v
+Group3.nrofHosts = 15
+
+Group3.speed = 5.0, 12.0
+Group3.waitTime = 0, 60
+
+# Keep the normal vehicle buffer size
+Group3.bufferSize = 50M
+
+
+# ============================================================
+# 10. Controlled message generation
+# ============================================================
+
+Events.nrof = 1
+Events1.class = MessageEventGenerator
+
+# Generate one message every second
+Events1.interval = 1, 1
+
+# Fixed size makes buffer occupancy predictable
+Events1.size = 100k, 100k
+
+# Only p0 generates messages
+# Upper bound is exclusive: 0,1 means address 0 only
+Events1.hosts = 0, 1
+
+# All messages are addressed to r60
+# Upper bound is exclusive: 60,61 means address 60 only
+Events1.tohosts = 60, 61
+
+# Generate about 100 messages during the first 100 seconds
+Events1.time = 0, 100
+
+# PrioritySprayAndWaitRouter assigns test priorities:
+#
+# M1  = P1
+# M2  = P2
+# M3  = P3
+# M4  = P4
+# M5  = P1
+# M6  = P2
+# ...
+Events1.prefix = M
+
+
+# ============================================================
+# 11. Reports
+# ============================================================
+
+# Include all events from simulation time zero
+Report.warmup = 0
+
+# Separate directory from transmission-order tests
+Report.reportDir = reports/kathmandu_priority_buffer_test/
+
+Report.nrofReports = 6
+
+Report.report1 = MessageStatsReport
+Report.report2 = DeliveredMessagesReport
+Report.report3 = CreatedMessagesReport
+Report.report4 = ContactTimesReport
+
+# Statistics separated by P1-P4
+Report.report5 = PriorityMessageStatsReport
+
+# Logs STARTED, RELAYED, DELIVERED, ABORTED,
+# DROPPED and REMOVED events
+Report.report6 = PriorityTransferLogReport
+
+
+# ============================================================
+# 12. Kathmandu OpenStreetMap underlay
+# ============================================================
+
+GUI.UnderlayImage.fileName = data/kathmandu_osm_hd.png
+GUI.UnderlayImage.offset = 0, 0
+GUI.UnderlayImage.scale = 0.5
+GUI.UnderlayImage.rotate = 0.0

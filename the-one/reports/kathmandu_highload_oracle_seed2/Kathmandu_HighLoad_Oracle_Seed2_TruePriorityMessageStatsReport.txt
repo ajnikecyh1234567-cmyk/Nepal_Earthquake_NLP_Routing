@@ -1,0 +1,9 @@
+True-priority message statistics for scenario Kathmandu_HighLoad_Oracle_Seed2
+sim_time: 43200.0000
+messages_without_true_priority: 0
+
+priority created delivered delivery_prob started relayed overhead_ratio aborted dropped removed latency_avg latency_med hopcount_avg hopcount_med
+P1 169 162 0.9586 727 664 3.0988 63 379 0 1885.5309 1462.0000 2.1111 2.0000
+P2 83 79 0.9518 347 324 3.1013 23 199 0 1689.4937 1011.0000 2.1392 2.0000
+P3 488 476 0.9754 2136 1910 3.0126 226 1135 0 1606.2773 1120.5000 2.0672 2.0000
+P4 204 193 0.9461 879 788 3.0829 91 600 0 1841.5233 1315.0000 2.0674 2.0000

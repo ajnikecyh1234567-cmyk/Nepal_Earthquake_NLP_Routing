@@ -1,0 +1,9 @@
+True-priority message statistics for scenario Kathmandu_HighLoad_BERT_Seed1
+sim_time: 43200.0000
+messages_without_true_priority: 0
+
+priority created delivered delivery_prob started relayed overhead_ratio aborted dropped removed latency_avg latency_med hopcount_avg hopcount_med
+P1 169 163 0.9645 742 664 3.0736 78 384 0 1780.1472 1166.0000 2.0429 2.0000
+P2 83 79 0.9518 355 321 3.0633 34 201 0 1901.7215 1326.0000 2.1646 2.0000
+P3 488 465 0.9529 2127 1903 3.0925 224 1152 0 1869.8753 1379.0000 2.1333 2.0000
+P4 211 205 0.9716 919 818 2.9902 101 585 0 1676.4293 1234.0000 2.1024 2.0000

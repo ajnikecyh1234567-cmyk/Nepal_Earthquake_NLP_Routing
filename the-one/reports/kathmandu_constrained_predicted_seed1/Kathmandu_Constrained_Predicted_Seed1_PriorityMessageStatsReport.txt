@@ -1,0 +1,9 @@
+Priority message statistics for scenario Kathmandu_Constrained_Predicted_Seed1
+sim_time: 43200.0000
+messages_without_priority: 0
+
+priority created delivered delivery_prob started relayed overhead_ratio aborted dropped removed latency_avg latency_med hopcount_avg hopcount_med
+P1 88 85 0.9659 399 346 3.0706 53 231 0 1577.1647 1125.0000 2.1176 2
+P2 41 41 1.0000 183 164 3.0000 19 100 0 1644.7561 1387.0000 2.1463 2
+P3 226 215 0.9513 998 879 3.0884 119 487 0 1705.1395 1220.0000 2.1163 2
+P4 120 117 0.9750 535 468 3.0000 67 289 0 1579.3932 1150.0000 2.2479 2

@@ -1,0 +1,16 @@
+{
+  "model_name": "google-bert/bert-base-uncased",
+  "random_state": 42,
+  "max_length": 128,
+  "batch_size": 8,
+  "epochs": 3,
+  "learning_rate": 2e-05,
+  "weight_decay": 0.01,
+  "warmup_ratio": 0.1,
+  "use_class_weights": true,
+  "train_file": "baseline_results\\train_split.csv",
+  "test_file": "baseline_results\\test_split.csv",
+  "train_size": 2402,
+  "test_size": 601,
+  "device": "cpu"
+}

@@ -1,0 +1,20 @@
+Message stats for scenario Kathmandu_HighLoad_BERT_Seed1
+sim_time: 43200.0000
+created: 951
+started: 4143
+relayed: 3706
+aborted: 437
+dropped: 2322
+removed: 0
+delivered: 912
+delivery_prob: 0.9590
+response_prob: 0.0000
+overhead_ratio: 3.0636
+latency_avg: 1813.1140
+latency_med: 1290.0000
+hopcount_avg: 2.1129
+hopcount_med: 2
+buffertime_avg: 16268.0461
+buffertime_med: 17872.0000
+rtt_avg: NaN
+rtt_med: NaN

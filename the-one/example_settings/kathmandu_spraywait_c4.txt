@@ -1,0 +1,182 @@
+# 1. Scenario settings
+
+Scenario.name = Kathmandu_SprayWait_C4
+Scenario.simulateConnections = true
+Scenario.updateInterval = 1.0
+Scenario.endTime = 43200
+Scenario.nrofHostGroups = 3
+
+
+# 2. Movement model settings
+
+# Fixed seed for reproducible experiments
+MovementModel.rngSeed = 1
+
+# Kathmandu map dimensions in metres
+MovementModel.worldSize = 3268, 2482
+
+# Allow nodes to disperse before report statistics begin
+MovementModel.warmup = 1000
+
+
+# 3. Communication interface
+
+# Approximately 2 Mbit/s
+btInterface.type = SimpleBroadcastInterface
+btInterface.transmitSpeed = 250k
+
+# Communication range in metres
+btInterface.transmitRange = 50
+
+
+# ============================================================
+# 4. Kathmandu map
+# ============================================================
+
+MapBasedMovement.nrofMapFiles = 1
+MapBasedMovement.mapFile1 = data/kathmandu_roads.wkt
+
+
+# ============================================================
+# 5. Common node settings
+# ============================================================
+
+Group.movementModel = ShortestPathMapBasedMovement
+
+# Baseline routing protocol
+Group.router = SprayAndWaitRouter
+
+# All groups use the Bluetooth interface
+Group.nrofInterfaces = 1
+Group.interface1 = btInterface
+
+# Waiting time at destinations/intermediate locations
+Group.waitTime = 0, 120
+
+# Message TTL in minutes
+Group.msgTtl = 300
+
+# All groups currently use map file 1
+Group.okMaps = 1
+
+
+# ============================================================
+# 6. Spray-and-Wait router settings
+# ============================================================
+
+# Initial number of message copies
+SprayAndWaitRouter.nrofCopies = 4
+
+# Binary Spray-and-Wait
+SprayAndWaitRouter.binaryMode = true
+
+
+# ============================================================
+# 7. Group 1: affected residents
+#
+# Node addresses: 0-59
+# Number of nodes: 60
+# ============================================================
+
+Group1.groupID = p
+Group1.nrofHosts = 60
+
+# Walking speed in metres per second
+Group1.speed = 0.3, 1.2
+
+# Resource-limited resident devices
+Group1.bufferSize = 5M
+
+
+# ============================================================
+# 8. Group 2: rescue workers
+#
+# Node addresses: 60-79
+# Number of nodes: 20
+# ============================================================
+
+Group2.groupID = r
+Group2.nrofHosts = 20
+
+# Rescue workers move slightly faster than residents
+Group2.speed = 1.0, 2.5
+
+# Larger rescue-device buffer
+Group2.bufferSize = 20M
+
+
+# ============================================================
+# 9. Group 3: rescue vehicles / data mules
+#
+# Node addresses: 80-94
+# Number of nodes: 15
+# ============================================================
+
+Group3.groupID = v
+Group3.nrofHosts = 15
+
+# Vehicle speed in metres per second
+Group3.speed = 5.0, 12.0
+
+# Vehicles stop for shorter periods
+Group3.waitTime = 0, 60
+
+# Larger vehicle buffer
+Group3.bufferSize = 50M
+
+
+# ============================================================
+# 10. Message generation
+# ============================================================
+
+Events.nrof = 1
+
+Events1.class = MessageEventGenerator
+
+# One new message every 60-120 seconds
+Events1.interval = 60, 120
+
+# Message size range
+Events1.size = 100k, 500k
+
+# Resident source nodes: addresses 0-59
+# Upper limit 60 is excluded
+Events1.hosts = 0, 60
+
+# Rescue-worker destinations: addresses 60-79
+# Upper limit 80 is excluded
+Events1.tohosts = 60, 80
+
+# Message generation period
+Events1.time = 0, 43200
+
+# Message IDs: M1, M2, M3...
+Events1.prefix = M
+
+
+# ============================================================
+# 11. Reports
+# ============================================================
+
+# Ignore the first 1000 seconds in report statistics
+Report.warmup = 0
+
+# Separate folder from the Epidemic baseline
+Report.reportDir = reports/kathmandu_spraywait_c4/
+
+Report.nrofReports = 4
+
+Report.report1 = MessageStatsReport
+Report.report2 = DeliveredMessagesReport
+Report.report3 = CreatedMessagesReport
+Report.report4 = ContactTimesReport
+
+
+# ============================================================
+# 12. Kathmandu OpenStreetMap underlay
+# ============================================================
+
+GUI.UnderlayImage.fileName = data/kathmandu_osm_hd.png
+GUI.UnderlayImage.offset = 0, 0
+GUI.UnderlayImage.scale = 0.5
+GUI.UnderlayImage.rotate = 0.0

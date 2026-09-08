@@ -1,0 +1,138 @@
+
+
+Scenario.name = Kathmandu_Priority_Test
+
+Scenario.simulateConnections = true
+Scenario.updateInterval = 1.0
+
+# Short development test
+Scenario.endTime = 2000
+
+# Residents, rescuers and vehicles
+Scenario.nrofHostGroups = 3
+
+
+
+# Fixed random seed for reproducibility
+MovementModel.rngSeed = 1
+
+# Kathmandu map dimensions in metres
+MovementModel.worldSize = 3268, 2482
+
+# Allow nodes to disperse before simulation time zero
+MovementModel.warmup = 1000
+
+
+# Simple Bluetooth-like broadcast interface
+btInterface.type = SimpleBroadcastInterface
+
+# 250 kB/s is approximately 2 Mbit/s
+btInterface.transmitSpeed = 250k
+
+# Communication range in metres
+btInterface.transmitRange = 50
+
+
+
+MapBasedMovement.nrofMapFiles = 1
+MapBasedMovement.mapFile1 = data/kathmandu_roads.wkt
+
+
+Group.movementModel = ShortestPathMapBasedMovement
+
+# Custom priority-aware router
+Group.router = PrioritySprayAndWaitRouter
+
+Group.nrofInterfaces = 1
+Group.interface1 = btInterface
+
+# Waiting time at selected destinations
+Group.waitTime = 0, 120
+
+# Message TTL is expressed in minutes
+Group.msgTtl = 300
+
+# All moving groups use map file 1
+Group.okMaps = 1
+
+
+SprayAndWaitRouter.nrofCopies = 4
+SprayAndWaitRouter.binaryMode = true
+
+
+Group1.groupID = p
+Group1.nrofHosts = 60
+
+# Walking speed in metres per second
+Group1.speed = 0.3, 1.2
+
+# Limited storage on resident devices
+Group1.bufferSize = 5M
+
+Group2.groupID = r
+Group2.nrofHosts = 20
+
+# Rescue workers move faster than residents
+Group2.speed = 1.0, 2.5
+
+# Larger rescue-device buffer
+Group2.bufferSize = 20M
+
+
+Group3.groupID = v
+Group3.nrofHosts = 15
+
+# Vehicle speed in metres per second
+Group3.speed = 5.0, 12.0
+
+# Vehicles wait for shorter periods
+Group3.waitTime = 0, 60
+
+# Larger vehicle buffer
+Group3.bufferSize = 50M
+
+
+Events.nrof = 1
+Events1.class = MessageEventGenerator
+
+# Increased message frequency for the short debugging run
+Events1.interval = 20, 30
+
+# Message size range
+Events1.size = 100k, 500k
+
+# Residents are message sources: addresses 0-59
+# The upper limit is exclusive
+Events1.hosts = 0, 60
+
+# Rescue workers are destinations: addresses 60-79
+# The upper limit is exclusive
+Events1.tohosts = 60, 80
+
+# Generate messages throughout the short test
+Events1.time = 0, 2000
+
+# Message IDs: M1, M2, M3...
+Events1.prefix = M
+
+
+# Include all message events from simulation time zero
+Report.warmup = 0
+
+# Use a separate folder so baseline reports are not mixed
+Report.reportDir = reports/kathmandu_priority_test/
+
+Report.nrofReports = 6
+
+Report.report1 = MessageStatsReport
+Report.report2 = DeliveredMessagesReport
+Report.report3 = CreatedMessagesReport
+Report.report4 = ContactTimesReport
+Report.report5 = PriorityMessageStatsReport
+Report.report6 = PriorityTransferLogReport
+
+
+GUI.UnderlayImage.fileName = data/kathmandu_osm_hd.png
+GUI.UnderlayImage.offset = 0, 0
+GUI.UnderlayImage.scale = 0.5
+GUI.UnderlayImage.rotate = 0.0

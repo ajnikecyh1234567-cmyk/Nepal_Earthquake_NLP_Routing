@@ -1,0 +1,9 @@
+Priority message statistics for scenario Kathmandu_Priority_CSV_Test
+sim_time: 2000.0000
+messages_without_priority: 0
+
+priority created delivered delivery_prob started relayed overhead_ratio aborted dropped removed latency_avg latency_med hopcount_avg hopcount_med
+P1 6 3 0.5000 21 21 6.0000 0 0 0 705.6667 834.0000 2.0000 2
+P2 3 3 1.0000 12 12 3.0000 0 0 0 914.0000 1171.0000 2.6667 3
+P3 7 3 0.4286 22 21 6.0000 1 0 0 838.3333 1108.0000 2.3333 2
+P4 6 3 0.5000 19 18 5.0000 0 0 0 547.0000 380.0000 2.6667 3

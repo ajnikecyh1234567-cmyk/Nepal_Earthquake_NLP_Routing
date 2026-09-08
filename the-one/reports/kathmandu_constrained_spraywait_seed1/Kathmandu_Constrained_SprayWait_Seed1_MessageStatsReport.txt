@@ -1,0 +1,20 @@
+Message stats for scenario Kathmandu_Constrained_SprayWait_Seed1
+sim_time: 43200.0000
+created: 475
+started: 2110
+relayed: 1856
+aborted: 254
+dropped: 1108
+removed: 0
+delivered: 458
+delivery_prob: 0.9642
+response_prob: 0.0000
+overhead_ratio: 3.0524
+latency_avg: 1655.4651
+latency_med: 1203.0000
+hopcount_avg: 2.1463
+hopcount_med: 2
+buffertime_avg: 17787.9377
+buffertime_med: 17907.0000
+rtt_avg: NaN
+rtt_med: NaN

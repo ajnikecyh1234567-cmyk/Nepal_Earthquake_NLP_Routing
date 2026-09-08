@@ -1,0 +1,77 @@
+# ============================================================
+# Formal Priority Spray-and-Wait scenario template
+# ============================================================
+
+Scenario.name = Kathmandu_Priority_Formal_Seed1
+Scenario.simulateConnections = true
+Scenario.updateInterval = 1.0
+Scenario.endTime = 43200
+Scenario.nrofHostGroups = 3
+
+MovementModel.rngSeed = 1
+MovementModel.worldSize = 3268, 2482
+MovementModel.warmup = 1000
+
+btInterface.type = SimpleBroadcastInterface
+btInterface.transmitSpeed = 250k
+btInterface.transmitRange = 50
+
+MapBasedMovement.nrofMapFiles = 1
+MapBasedMovement.mapFile1 = data/kathmandu_roads.wkt
+
+Group.movementModel = ShortestPathMapBasedMovement
+Group.router = PrioritySprayAndWaitRouter
+
+Group.nrofInterfaces = 1
+Group.interface1 = btInterface
+Group.waitTime = 0, 120
+Group.msgTtl = 300
+Group.okMaps = 1
+
+SprayAndWaitRouter.nrofCopies = 4
+SprayAndWaitRouter.binaryMode = true
+
+# Residents: addresses 0-59
+Group1.groupID = p
+Group1.nrofHosts = 60
+Group1.speed = 0.3, 1.2
+Group1.bufferSize = 5M
+
+# Rescue workers: addresses 60-79
+Group2.groupID = r
+Group2.nrofHosts = 20
+Group2.speed = 1.0, 2.5
+Group2.bufferSize = 20M
+
+# Rescue vehicles: addresses 80-94
+Group3.groupID = v
+Group3.nrofHosts = 15
+Group3.speed = 5.0, 12.0
+Group3.waitTime = 0, 60
+Group3.bufferSize = 50M
+
+# Temporary random traffic configuration
+# This will later be replaced by the NLP CSV event generator
+Events.nrof = 1
+Events1.class = MessageEventGenerator
+Events1.interval = 60, 120
+Events1.size = 100k, 500k
+Events1.hosts = 0, 60
+Events1.tohosts = 60, 80
+Events1.time = 0, 43200
+Events1.prefix = M
+
+Report.warmup = 0
+Report.reportDir = reports/kathmandu_priority_formal_seed1/
+
+Report.nrofReports = 5
+Report.report1 = MessageStatsReport
+Report.report2 = DeliveredMessagesReport
+Report.report3 = CreatedMessagesReport
+Report.report4 = ContactTimesReport
+Report.report5 = PriorityMessageStatsReport
+
+GUI.UnderlayImage.fileName = data/kathmandu_osm_hd.png
+GUI.UnderlayImage.offset = 0, 0
+GUI.UnderlayImage.scale = 0.5
+GUI.UnderlayImage.rotate = 0.0

@@ -1,0 +1,20 @@
+Message stats for scenario Kathmandu_HighLoad_Oracle_Seed3
+sim_time: 43200.0000
+created: 941
+started: 4127
+relayed: 3670
+aborted: 456
+dropped: 2273
+removed: 0
+delivered: 905
+delivery_prob: 0.9617
+response_prob: 0.0000
+overhead_ratio: 3.0552
+latency_avg: 1721.6144
+latency_med: 1223.0000
+hopcount_avg: 2.0994
+hopcount_med: 2
+buffertime_avg: 16572.1324
+buffertime_med: 17877.0000
+rtt_avg: NaN
+rtt_med: NaN

@@ -1,0 +1,20 @@
+Message stats for scenario Kathmandu_HighLoad_Predicted_Seed3
+sim_time: 43200.0000
+created: 939
+started: 4121
+relayed: 3661
+aborted: 459
+dropped: 2253
+removed: 0
+delivered: 902
+delivery_prob: 0.9606
+response_prob: 0.0000
+overhead_ratio: 3.0588
+latency_avg: 1744.3027
+latency_med: 1251.0000
+hopcount_avg: 2.0898
+hopcount_med: 2
+buffertime_avg: 16589.4026
+buffertime_med: 17878.0000
+rtt_avg: NaN
+rtt_med: NaN

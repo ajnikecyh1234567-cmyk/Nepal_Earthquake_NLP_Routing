@@ -1,0 +1,9 @@
+Priority message statistics for scenario Kathmandu_Priority_CSV_Oracle_Test
+sim_time: 2000.0000
+messages_without_priority: 0
+
+priority created delivered delivery_prob started relayed overhead_ratio aborted dropped removed latency_avg latency_med hopcount_avg hopcount_med
+P1 6 3 0.5000 21 21 6.0000 0 0 0 705.6667 834.0000 2.0000 2
+P2 0 0 0.0000 0 0 NaN 0 0 0 NaN NaN NaN 0
+P3 11 6 0.5455 35 34 4.6667 1 0 0 876.1667 1149.0000 2.5000 3
+P4 5 3 0.6000 18 17 4.6667 0 0 0 547.0000 380.0000 2.6667 3

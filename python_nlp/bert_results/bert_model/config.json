@@ -1,0 +1,52 @@
+{
+  "add_cross_attention": false,
+  "architectures": [
+    "BertForSequenceClassification"
+  ],
+  "attention_probs_dropout_prob": 0.1,
+  "bos_token_id": null,
+  "classifier_dropout": null,
+  "dtype": "float32",
+  "eos_token_id": null,
+  "gradient_checkpointing": false,
+  "hidden_act": "gelu",
+  "hidden_dropout_prob": 0.1,
+  "hidden_size": 768,
+  "id2label": {
+    "0": "injured_or_dead_people",
+    "1": "missing_trapped_or_found_people",
+    "2": "displaced_people_and_evacuations",
+    "3": "infrastructure_and_utilities_damage",
+    "4": "caution_and_advice",
+    "5": "donation_needs_or_offers_or_volunteering_services",
+    "6": "other_useful_information",
+    "7": "sympathy_and_emotional_support",
+    "8": "not_related_or_irrelevant"
+  },
+  "initializer_range": 0.02,
+  "intermediate_size": 3072,
+  "is_decoder": false,
+  "label2id": {
+    "caution_and_advice": 4,
+    "displaced_people_and_evacuations": 2,
+    "donation_needs_or_offers_or_volunteering_services": 5,
+    "infrastructure_and_utilities_damage": 3,
+    "injured_or_dead_people": 0,
+    "missing_trapped_or_found_people": 1,
+    "not_related_or_irrelevant": 8,
+    "other_useful_information": 6,
+    "sympathy_and_emotional_support": 7
+  },
+  "layer_norm_eps": 1e-12,
+  "max_position_embeddings": 512,
+  "model_type": "bert",
+  "num_attention_heads": 12,
+  "num_hidden_layers": 12,
+  "pad_token_id": 0,
+  "position_embedding_type": "absolute",
+  "tie_word_embeddings": true,
+  "transformers_version": "5.15.0",
+  "type_vocab_size": 2,
+  "use_cache": true,
+  "vocab_size": 30522
+}

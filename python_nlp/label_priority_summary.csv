@@ -1,0 +1,10 @@
+label,priority_level,priority_score,count
+injured_or_dead_people,high,1,344
+missing_trapped_or_found_people,high,1,187
+infrastructure_and_utilities_damage,medium_high,2,129
+displaced_people_and_evacuations,medium_high,2,85
+caution_and_advice,medium_high,2,35
+donation_needs_or_offers_or_volunteering_services,medium,3,887
+other_useful_information,medium,3,638
+sympathy_and_emotional_support,low,4,522
+not_related_or_irrelevant,low,4,176

@@ -1,0 +1,11 @@
+True-priority message statistics for scenario Kathmandu_HighLoad_Predicted_Seed1
+sim_time: 0.0000
+messages_without_true_priority: 0
+
+priority created delivered delivery_prob started relayed overhead_ratio aborted dropped removed latency_avg latency_med hopcount_avg hopcount_med
+P1 0 0 NaN 0 0 NaN 0 0 0 NaN NaN NaN NaN
+P2 0 0 NaN 0 0 NaN 0 0 0 NaN NaN NaN NaN
+P3 0 0 NaN 0 0 NaN 0 0 0 NaN NaN NaN NaN
+P4 0 0 NaN 0 0 NaN 0 0 0 NaN NaN NaN NaN
+.9507 2130 1898 3.0994 232 1149 0 1848.7300 1379.0000 2.1447 2.0000
+P4 207 202 0.9758 907 804 2.9802 103 568 0 1705.3267 1259.5000 2.0990 2.0000

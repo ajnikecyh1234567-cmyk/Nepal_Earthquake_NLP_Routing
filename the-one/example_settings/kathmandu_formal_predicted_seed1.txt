@@ -1,0 +1,76 @@
+# ============================================================
+# Kathmandu formal Seed 1 experiment
+# Fixed CSV schedule: data/nepal_simulation_messages.csv
+# Simulation duration: 12 hours (43200 seconds)
+# Movement seed: 1
+# ============================================================
+
+Scenario.name = Kathmandu_Formal_Predicted_Seed1
+Scenario.simulateConnections = true
+Scenario.updateInterval = 1.0
+Scenario.endTime = 43200
+Scenario.nrofHostGroups = 3
+
+MovementModel.rngSeed = 1
+MovementModel.worldSize = 3268, 2482
+MovementModel.warmup = 1000
+
+btInterface.type = SimpleBroadcastInterface
+btInterface.transmitSpeed = 250k
+btInterface.transmitRange = 50
+
+MapBasedMovement.nrofMapFiles = 1
+MapBasedMovement.mapFile1 = data/kathmandu_roads.wkt
+
+Group.movementModel = ShortestPathMapBasedMovement
+Group.router = PrioritySprayAndWaitRouter
+Group.nrofInterfaces = 1
+Group.interface1 = btInterface
+Group.waitTime = 0, 120
+Group.msgTtl = 300
+Group.okMaps = 1
+
+SprayAndWaitRouter.nrofCopies = 4
+SprayAndWaitRouter.binaryMode = true
+
+# Residents: addresses 0-59
+Group1.groupID = p
+Group1.nrofHosts = 60
+Group1.speed = 0.3, 1.2
+Group1.bufferSize = 5M
+
+# Rescue workers: addresses 60-79
+Group2.groupID = r
+Group2.nrofHosts = 20
+Group2.speed = 1.0, 2.5
+Group2.bufferSize = 20M
+
+# Rescue vehicles / data mules: addresses 80-94
+Group3.groupID = v
+Group3.nrofHosts = 15
+Group3.speed = 5.0, 12.0
+Group3.waitTime = 0, 60
+Group3.bufferSize = 50M
+
+# Fixed message schedule shared by all experimental conditions
+Events.nrof = 1
+Events1.class = PriorityMessageEventGenerator
+Events1.file = data/nepal_simulation_messages.csv
+Events1.mode = predicted
+
+Report.warmup = 0
+Report.reportDir = reports/kathmandu_formal_predicted_seed1/
+
+# Keep formal reports compact.
+# PriorityTransferLogReport is intentionally omitted.
+Report.nrofReports = 5
+Report.report1 = MessageStatsReport
+Report.report2 = CreatedMessagesReport
+Report.report3 = DeliveredMessagesReport
+Report.report4 = PriorityMessageStatsReport
+Report.report5 = TruePriorityMessageStatsReport
+
+GUI.UnderlayImage.fileName = data/kathmandu_osm_hd.png
+GUI.UnderlayImage.offset = 0, 0
+GUI.UnderlayImage.scale = 0.5
+GUI.UnderlayImage.rotate = 0.0

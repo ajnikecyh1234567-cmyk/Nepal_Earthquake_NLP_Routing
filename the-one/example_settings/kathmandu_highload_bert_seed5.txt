@@ -1,0 +1,73 @@
+# ============================================================
+# Kathmandu high-load Seed 1 experiment
+#
+# Fixed conditions:
+# - duration: 43200 seconds
+# - bandwidth: 50 kB/s
+# - message interval: 30-60 seconds
+# - movement seed: 1
+# ============================================================
+
+Scenario.name = Kathmandu_HighLoad_BERT_Seed5
+Scenario.simulateConnections = true
+Scenario.updateInterval = 1.0
+Scenario.endTime = 43200
+Scenario.nrofHostGroups = 3
+
+MovementModel.rngSeed = 5
+MovementModel.worldSize = 3268, 2482
+MovementModel.warmup = 1000
+
+btInterface.type = SimpleBroadcastInterface
+btInterface.transmitSpeed = 50k
+btInterface.transmitRange = 50
+
+MapBasedMovement.nrofMapFiles = 1
+MapBasedMovement.mapFile1 = data/kathmandu_roads.wkt
+
+Group.movementModel = ShortestPathMapBasedMovement
+Group.router = PrioritySprayAndWaitRouter
+Group.nrofInterfaces = 1
+Group.interface1 = btInterface
+Group.waitTime = 0, 120
+Group.msgTtl = 300
+Group.okMaps = 1
+
+SprayAndWaitRouter.nrofCopies = 4
+SprayAndWaitRouter.binaryMode = true
+
+Group1.groupID = p
+Group1.nrofHosts = 60
+Group1.speed = 0.3, 1.2
+Group1.bufferSize = 5M
+
+Group2.groupID = r
+Group2.nrofHosts = 20
+Group2.speed = 1.0, 2.5
+Group2.bufferSize = 20M
+
+Group3.groupID = v
+Group3.nrofHosts = 15
+Group3.speed = 5.0, 12.0
+Group3.waitTime = 0, 60
+Group3.bufferSize = 50M
+
+Events.nrof = 1
+Events1.class = PriorityMessageEventGenerator
+Events1.file = data/nepal_simulation_messages_highload_bert.csv
+Events1.mode = predicted
+
+Report.warmup = 0
+Report.reportDir = reports/kathmandu_highload_bert_seed5/
+
+Report.nrofReports = 5
+Report.report1 = MessageStatsReport
+Report.report2 = CreatedMessagesReport
+Report.report3 = DeliveredMessagesReport
+Report.report4 = PriorityMessageStatsReport
+Report.report5 = TruePriorityMessageStatsReport
+
+GUI.UnderlayImage.fileName = data/kathmandu_osm_hd.png
+GUI.UnderlayImage.offset = 0, 0
+GUI.UnderlayImage.scale = 0.5
+GUI.UnderlayImage.rotate = 0.0

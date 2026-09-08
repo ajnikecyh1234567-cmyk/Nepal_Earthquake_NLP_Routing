@@ -1,0 +1,13 @@
+metric,value
+label_accuracy,0.6772046589018302
+label_macro_f1,0.5548845083692957
+label_weighted_f1,0.6747584534601331
+priority_accuracy,0.7803660565723793
+priority_macro_f1,0.7256457128665693
+priority_weighted_f1,0.7807694815511533
+under_prioritisation_rate,0.1048252911813644
+over_prioritisation_rate,0.11480865224625623
+severe_priority_error_rate,0.0632279534109817
+high_priority_recall,0.8301886792452831
+high_to_low_count,5.0
+high_to_low_rate_among_high,0.04716981132075472
